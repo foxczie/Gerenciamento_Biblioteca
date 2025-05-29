@@ -2,7 +2,6 @@ from database.connection import engine
 from models.base import Base
 from controllers import crud
 
-# Criar tabelas
 Base.metadata.create_all(engine)
 
 def menu():
@@ -64,5 +63,4 @@ def menu():
         else:
             print("Opção inválida.")
 
-# Iniciar menu
 menu()

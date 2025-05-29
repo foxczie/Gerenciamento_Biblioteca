@@ -1,5 +1,5 @@
 class Contador:
-    __total_livros = 0  # privado
+    __total_livros = 0  
 
     @classmethod
     def incrementar(cls):

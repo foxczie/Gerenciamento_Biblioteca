@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from utils.contador import Contador
 from controllers.crudInterface import CrudInterface 
 
-class Crud(crudInterface):
+class Crud(CrudInterface):
     def adicionar_aluno(nome, email, matricula):
         try:
             novo = Aluno(nome=nome, email=email, matricula=matricula)
