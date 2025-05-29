@@ -13,8 +13,11 @@ def menu():
         [3] Adicionar Livro
         [4] Listar Livros
         [5] Realizar Empréstimo
+        [6] Listar Empréstimos
+        [7] Devolver Livro
         [0] Sair
         """)
+
         try:
             opcao = int(input("Escolha: "))
         except ValueError:
@@ -45,6 +48,15 @@ def menu():
                 crud.fazer_emprestimo(aluno_id, livro_id)
             except ValueError:
                 print("IDs devem ser numéricos.")
+        elif opcao == 6:
+            crud.listar_emprestimos()
+
+        elif opcao == 7:
+            try:
+                emprestimo_id = int(input("ID do Empréstimo: "))
+                crud.devolver_livro(emprestimo_id)
+            except ValueError:
+                print("ID inválido.")
 
         elif opcao == 0:
             print("Encerrando...")

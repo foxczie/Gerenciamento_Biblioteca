@@ -41,3 +41,24 @@ def fazer_emprestimo(aluno_id, livro_id):
     except Exception as e:
         session.rollback()
         print(f"Erro ao realizar empréstimo: {e}")
+
+def devolver_livro(emprestimo_id):
+    try:
+        emprestimo = session.query(Emprestimo).filter_by(id=emprestimo_id).first()
+        if emprestimo:
+            session.delete(emprestimo)
+            session.commit()
+            print("Livro devolvido com sucesso.")
+        else:
+            print("Empréstimo não encontrado.")
+    except Exception as e:
+        session.rollback()
+        print(f"Erro ao devolver livro: {e}")
+
+def listar_emprestimos():
+    emprestimos = session.query(Emprestimo).all()
+    if not emprestimos:
+        print("Nenhum empréstimo registrado.")
+    for emp in emprestimos:
+        print(f"[ID: {emp.id}] Aluno: {emp.aluno.nome} | Livro: {emp.livro.titulo}")
+    
