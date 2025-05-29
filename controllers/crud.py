@@ -4,6 +4,7 @@ from models.livro import Livro
 from models.emprestimo import Emprestimo
 from sqlalchemy.exc import IntegrityError
 from utils.contador import Contador
+from models.funcionario import Funcionario
 from controllers.crudInterface import CrudInterface 
 
 class Crud(CrudInterface):
@@ -64,3 +65,17 @@ class Crud(CrudInterface):
         for emp in emprestimos:
             print(f"[ID: {emp.id}] Aluno: {emp.aluno.nome} | Livro: {emp.livro.titulo}")
         
+    def adicionar_funcionario(nome, email, cargo):
+        try:
+            novo = Funcionario(nome=nome, email=email, cargo=cargo)
+            session.add(novo)
+            session.commit()
+            print("Funcionário adicionado com sucesso.")
+        except IntegrityError:
+            session.rollback()
+            print("Erro: Email já cadastrado.")
+
+    def listar_funcionarios():
+        funcionarios = session.query(Funcionario).all()
+        for func in funcionarios:
+            func.exibir_detalhes()

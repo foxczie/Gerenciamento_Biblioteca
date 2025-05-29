@@ -1,6 +1,6 @@
 from database.connection import engine
 from models.base import Base
-from controllers import crud
+from controllers.crud import Crud
 
 Base.metadata.create_all(engine)
 
@@ -14,6 +14,8 @@ def menu():
         [5] Realizar Empréstimo
         [6] Listar Empréstimos
         [7] Devolver Livro
+        [8] Adicionar Funcionário
+        [9] Listar Funcionários
         [0] Sair
         """)
 
@@ -27,39 +29,50 @@ def menu():
             nome = input("Nome: ")
             email = input("Email: ")
             matricula = input("Matrícula: ")
-            crud.adicionar_aluno(nome, email, matricula)
+            Crud.adicionar_aluno(nome, email, matricula)
 
         elif opcao == 2:
-            crud.listar_alunos()
+            Crud.listar_alunos()
 
         elif opcao == 3:
             titulo = input("Título: ")
             autor = input("Autor: ")
-            crud.adicionar_livro(titulo, autor)
+            Crud.adicionar_livro(titulo, autor)
 
         elif opcao == 4:
-            crud.listar_livros()
+            Crud.listar_livros()
 
         elif opcao == 5:
             try:
                 aluno_id = int(input("ID do Aluno: "))
                 livro_id = int(input("ID do Livro: "))
-                crud.fazer_emprestimo(aluno_id, livro_id)
+                Crud.fazer_emprestimo(aluno_id, livro_id)
             except ValueError:
                 print("IDs devem ser numéricos.")
+
         elif opcao == 6:
-            crud.listar_emprestimos()
+            Crud.listar_emprestimos()
 
         elif opcao == 7:
             try:
                 emprestimo_id = int(input("ID do Empréstimo: "))
-                crud.devolver_livro(emprestimo_id)
+                Crud.devolver_livro(emprestimo_id)
             except ValueError:
                 print("ID inválido.")
+
+        elif opcao == 8:
+            nome = input("Nome: ")
+            email = input("Email: ")
+            cargo = input("Cargo: ")
+            Crud.adicionar_funcionario(nome, email, cargo)
+
+        elif opcao == 9:
+            Crud.listar_funcionarios()
 
         elif opcao == 0:
             print("Encerrando...")
             break
+
         else:
             print("Opção inválida.")
 
