@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey, Integer
 from .pessoa import Pessoa
 
 class Funcionario(Pessoa):
