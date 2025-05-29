@@ -11,7 +11,7 @@ class Livro(Base):
     def __init__(self, titulo, autor):
         self.titulo = titulo
         self.autor = autor
-        Contador.total_livros += 1
+        Contador.incrementar()
 
     def exibir_info(self):
         print(f"Livro: {self.titulo} | Autor: {self.autor}")
