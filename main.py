@@ -35,7 +35,6 @@ def menu():
             opcao = int(input("Escolha: "))
         except ValueError:
             print("Por favor, insira um número válido.")
-            input('Aperte uma tecla para continuar...')
             continue
 
         if opcao == 1:
@@ -43,11 +42,9 @@ def menu():
             email = input("Email: ")
             matricula = input("Matrícula: ")
             Crud.adicionar_aluno(nome, email, matricula)
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 2:
             Crud.listar_alunos()
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 3:
             try:
@@ -55,17 +52,14 @@ def menu():
                 Crud.remover_aluno(aluno_id)
             except ValueError:
                 print("ID inválido.")
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 4:
             titulo = input("Título: ")
             autor = input("Autor: ")
             Crud.adicionar_livro(titulo, autor)
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 5:
             Crud.listar_livros()
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 6:
             try:
@@ -73,7 +67,6 @@ def menu():
                 Crud.remover_livro(livro_id)
             except ValueError:
                 print("ID inválido.")
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 7:
             try:
@@ -82,11 +75,9 @@ def menu():
                 Crud.fazer_emprestimo(aluno_id, livro_id)
             except ValueError:
                 print("IDs devem ser numéricos.")
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 8:
             Crud.listar_emprestimos()
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 9:
             try:
@@ -94,18 +85,15 @@ def menu():
                 Crud.devolver_livro(emprestimo_id)
             except ValueError:
                 print("ID inválido.")
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 10:
             nome = input("Nome: ")
             email = input("Email: ")
             cargo = input("Cargo: ")
             Crud.adicionar_funcionario(nome, email, cargo)
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 11:
             Crud.listar_funcionarios()
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 12:
             try:
@@ -113,7 +101,6 @@ def menu():
                 Crud.remover_funcionario(funcionario_id)
             except ValueError:
                 print("ID inválido.")
-            input('Aperte uma tecla para continuar...')
 
         elif opcao == 0:
             print("Encerrando...")
@@ -121,6 +108,5 @@ def menu():
 
         else:
             print("Opção inválida.")
-            input('Aperte uma tecla para continuar...')
 
 menu()

@@ -26,6 +26,7 @@ class Crud(CrudInterface):
         alunos = session.query(Aluno).all()
         for aluno in alunos:
             aluno.exibir_detalhes()
+        input('Aperte uma tecla para continuar...')
 
     @staticmethod
     def remover_aluno(aluno_id):
@@ -35,11 +36,14 @@ class Crud(CrudInterface):
                 session.delete(aluno)
                 session.commit()
                 print("Aluno removido com sucesso.")
+                input('Aperte uma tecla para continuar...')
             else:
                 print("Aluno não encontrado.")
+                input('Aperte uma tecla para continuar...')
         except Exception as e:
             session.rollback()
             print(f"Erro ao remover aluno: {e}")
+            input('Aperte uma tecla para continuar...')
 
     @staticmethod
     def adicionar_livro(titulo, autor):
@@ -52,9 +56,19 @@ class Crud(CrudInterface):
     @staticmethod
     def listar_livros():
         livros = session.query(Livro).all()
+        livrosEmprestados = session.query(Emprestimo).all()
+        
+        idLivros = []
+
+        for le in livrosEmprestados:
+            idLivros.append(le.livro_id)
+        
         for livro in livros:
-            livro.exibir_info()
+            if livro.id not in idLivros:
+                livro.exibir_info()
+                
         print(Contador.mostrar_total())
+        input('Aperte uma tecla para continuar...')
 
     @staticmethod
     def remover_livro(livro_id):
@@ -64,20 +78,34 @@ class Crud(CrudInterface):
                 session.delete(livro)
                 session.commit()
                 print("Livro removido com sucesso.")
+                input('Aperte uma tecla para continuar...')
             else:
                 print("Livro não encontrado.")
+                input('Aperte uma tecla para continuar...')
         except Exception as e:
             session.rollback()
             print(f"Erro ao remover livro: {e}")
+            input('Aperte uma tecla para continuar...')
 
     @staticmethod
     def fazer_emprestimo(aluno_id, livro_id):
         try:
-            emprestimo = Emprestimo(aluno_id=aluno_id, livro_id=livro_id)
-            session.add(emprestimo)
-            session.commit()
-            print("Empréstimo realizado.")
-            input('Aperte uma tecla para continuar...')
+            aluno = session.query(Aluno).filter(Aluno.id == aluno_id).all()
+            livro = session.query(Livro).filter(Livro.id == livro_id).all()
+            
+            if not aluno:
+                print('Aluno não existe.')
+                input('Aperte uma tecla para continuar...')
+            elif not livro:
+                print('Livro não disponível.')
+                input('Aperte uma tecla para continuar...')
+            else:
+                emprestimo = Emprestimo(aluno_id=aluno_id, livro_id=livro_id)
+                session.add(emprestimo)
+                session.commit()
+                print("Empréstimo realizado.")
+                input('Aperte uma tecla para continuar...')
+
         except Exception as e:
             session.rollback()
             print(f"Erro ao realizar empréstimo: {e}")
@@ -107,7 +135,7 @@ class Crud(CrudInterface):
             print("Nenhum empréstimo registrado.")
             input('Aperte uma tecla para continuar...')
         for emp in emprestimos:
-            print(f"[ID: {emp.id}] Aluno: {emp.aluno.nome} | Livro: {emp.livro.titulo}")
+            print(f"[ID Empréstimo: {emp.id}] ID Aluno: {emp.aluno_id} | ID Livro: {emp.livro_id}")
         input('Aperte uma tecla para continuar...')
         
     @staticmethod
@@ -128,6 +156,7 @@ class Crud(CrudInterface):
         funcionarios = session.query(Funcionario).all()
         for func in funcionarios:
             func.exibir_detalhes()
+        input('Aperte uma tecla para continuar...')
 
     @staticmethod
     def remover_funcionario(funcionario_id):
@@ -137,8 +166,11 @@ class Crud(CrudInterface):
                 session.delete(funcionario)
                 session.commit()
                 print("Funcionário removido com sucesso.")
+                input('Aperte uma tecla para continuar...')
             else:
                 print("Funcionário não encontrado.")
+                input('Aperte uma tecla para continuar...')
         except Exception as e:
             session.rollback()
             print(f"Erro ao remover funcionário: {e}")
+            input('Aperte uma tecla para continuar...')
