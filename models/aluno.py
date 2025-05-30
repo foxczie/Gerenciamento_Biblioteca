@@ -19,4 +19,4 @@ class Aluno(Pessoa):
         self._matricula = valor
 
     def exibir_detalhes(self):
-        print(f"Aluno: {self.nome}, Email: {self.email}, Matrícula: {self.matricula}")
+        print(f"Aluno: {self.nome}, Email: {self.email}, Matrícula: {self.matricula}, ID: {self.id}")

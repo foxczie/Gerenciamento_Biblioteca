@@ -11,4 +11,4 @@ class Funcionario(Pessoa):
     }
 
     def exibir_detalhes(self):
-        print(f"Funcionário: {self.nome}, Cargo: {self.cargo}")
+        print(f"Funcionário: {self.nome}, Cargo: {self.cargo}, ID: {self.id}")

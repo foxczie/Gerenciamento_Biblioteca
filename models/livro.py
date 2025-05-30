@@ -14,4 +14,4 @@ class Livro(Base):
         Contador.incrementar()
 
     def exibir_info(self):
-        print(f"Livro: {self.titulo} | Autor: {self.autor}")
+        print(f"Livro: {self.titulo} | Autor: {self.autor} | ID: {self.id}")
